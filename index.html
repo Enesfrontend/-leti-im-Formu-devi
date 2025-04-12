@@ -10,57 +10,73 @@
     <div class="contact-container">
         <h1>Bize Ulaşın</h1>
         
-        <form action="#" method="post">
+        <!-- Ekran okuyucular için gizli bildirim alanı -->
+        <div id="screen-reader-announcement" class="sr-only" aria-live="polite"></div>
+        
+        <!-- Toast mesajı için konteyner -->
+        <div id="toast" class="toast" role="alert" aria-live="assertive"></div>
+        
+        <form id="contactForm" action="#" method="post" novalidate>
             <div class="form-row">
                 <div class="form-column">
                     <label for="firstName" class="required">Ad</label>
-                    <input type="text" id="firstName" name="firstName" required>
+                    <input type="text" id="firstName" name="firstName" required aria-required="true" aria-describedby="firstNameError">
+                    <div id="firstNameError" class="error-message" aria-live="polite"></div>
                 </div>
                 
                 <div class="form-column">
                     <label for="lastName" class="required">Soyad</label>
-                    <input type="text" id="lastName" name="lastName" required>
+                    <input type="text" id="lastName" name="lastName" required aria-required="true" aria-describedby="lastNameError">
+                    <div id="lastNameError" class="error-message" aria-live="polite"></div>
                 </div>
             </div>
             
             <div class="form-group">
                 <label for="email" class="required">E-posta Adresi</label>
-                <input type="email" id="email" name="email" required>
+                <input type="email" id="email" name="email" required aria-required="true" aria-describedby="emailError">
+                <div id="emailError" class="error-message" aria-live="polite"></div>
             </div>
             
             <div class="form-group">
-                <label class="required">Talep Türü</label>
-                <div class="radio-group">
-                    <div class="radio-option">
-                        <input type="radio" id="generalEnquiry" name="queryType" value="general" required>
-                        <label for="generalEnquiry">
-                            <span class="custom-radio"></span>
-                            Genel Bilgi Talebi
-                        </label>
+                <fieldset>
+                    <legend class="required">Talep Türü</legend>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" id="generalEnquiry" name="queryType" value="general" required aria-required="true">
+                            <label for="generalEnquiry">
+                                <span class="custom-radio"></span>
+                                Genel Bilgi Talebi
+                            </label>
+                        </div>
+                        
+                        <div class="radio-option">
+                            <input type="radio" id="supportRequest" name="queryType" value="support">
+                            <label for="supportRequest">
+                                <span class="custom-radio"></span>
+                                Destek Talebi
+                            </label>
+                        </div>
                     </div>
-                    
-                    <div class="radio-option">
-                        <input type="radio" id="supportRequest" name="queryType" value="support">
-                        <label for="supportRequest">
-                            <span class="custom-radio"></span>
-                            Destek Talebi
-                        </label>
-                    </div>
-                </div>
+                    <div id="queryTypeError" class="error-message" aria-live="polite"></div>
+                </fieldset>
             </div>
             
             <div class="form-group">
                 <label for="message" class="required">Mesaj</label>
-                <textarea id="message" name="message" required></textarea>
+                <textarea id="message" name="message" required aria-required="true" aria-describedby="messageError"></textarea>
+                <div id="messageError" class="error-message" aria-live="polite"></div>
             </div>
             
             <div class="checkbox-group">
-                <input type="checkbox" id="consent" name="consent" required>
+                <input type="checkbox" id="consent" name="consent" required aria-required="true" aria-describedby="consentError">
                 <label for="consent">Ekip tarafından iletişime geçilmesine onay veriyorum *</label>
+                <div id="consentError" class="error-message" aria-live="polite"></div>
             </div>
             
             <button type="submit" class="submit-btn">Gönder</button>
         </form>
     </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
